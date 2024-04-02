@@ -38,11 +38,10 @@ export default class AddForm extends Component {
                     <input type="submit" id='addbook' value="Add Book" className="btn btn-warning btn-block add-btn" />
                 </form>
                 <hr />
-                <table className='table' class="table table-striped mt-5 text-center">
+                <table className='table'>
                     <thead>
                         <tr>
                             <th>Title</th>
-                            
                             <th>Author</th>
                             <th>Year</th>
                         </tr>
