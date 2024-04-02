@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Book from './Book'
+import { toBeEmpty } from '@testing-library/jest-dom/dist/matchers'
 
 export default class AddForm extends Component {
 
@@ -53,6 +54,12 @@ export default class AddForm extends Component {
             this.setState({
                 books:[...this.state.books,newBook]
             })
+
+            this.setState({
+                title:'',
+                author:'',
+                year:''
+            })
         }
     }
 
@@ -62,17 +69,17 @@ export default class AddForm extends Component {
                 <form className='book-mark' id="book-form" autocomplete="off" onSubmit={this.submitHandler}>
                     <div className="form-group">
                         <label htmlFor="title">Title</label>
-                        <input type="text" id="title" className="form-control"  value={this.title} onChange={this.titleHandler}/>
+                        <input type="text" id="title" className="form-control"  value={this.state.title} onChange={this.titleHandler}/>
                     </div>
 
                     <div className="form-group">
                         <label htmlFor="author">Author</label>
-                        <input type="text" id="author" className="form-control" value={this.author} onChange={this.authorHandler}/>
+                        <input type="text" id="author" className="form-control" value={this.state.author} onChange={this.authorHandler}/>
                     </div>
 
                     <div className="form-group">
                         <label htmlFor="year">Year</label>
-                        <input type="text" id="year" className="form-control" value={this.year} onChange={this.yearHandler}/>
+                        <input type="text" id="year" className="form-control" value={this.state.year} onChange={this.yearHandler}/>
                     </div>
                     <input type="submit" id='addbook' value="Add Book" className="btn btn-warning btn-block add-btn" />
                 </form>
@@ -89,7 +96,7 @@ export default class AddForm extends Component {
                    
                     <tbody id="book-list">
                         {this.state.books.map(book => (
-                            <Book {...book}/>
+                            <Book {...book} key={book.id}/>
                         ))}
                     
                         
